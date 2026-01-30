@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ModelImage from "../Offer/ModelImage";
 import { NormalizedTariffs } from "../../lib/normalizeTariffs";
+import { TariffList } from "../Tariffs/TariffList";
 
 type PricingPageProps = {
   tariffs: NormalizedTariffs;
@@ -11,7 +12,7 @@ export default function PricingPage({ tariffs }: PricingPageProps) {
   return (
     <>
       <main className="min-h-screen max-w-[1216px] mx-auto text-white mt-8">
-        <div className="absolute top-[153] left-[357] w-full h-[2px] bg-red-500 z-[30]"></div>
+        <div className="absolute top-[153] left-[357] w-[1216] h-[2px] bg-red-500 z-[30]"></div>
         <h1 className="text-left text-[40px] font-bold mb-5 md:mb-25">
           Выбери подходящий для себя <span className="text-accent">тариф</span>
         </h1>
@@ -20,48 +21,12 @@ export default function PricingPage({ tariffs }: PricingPageProps) {
             <ModelImage />
           </div>
           <div className="flex flex-col gap-4 w-full md:w-[748px] items-center lg:items-start ">
-            <div className="grid grid-cols-1 gap-6">
-              {/* Best tariff */}
-              <div className="border border-orange-400 rounded-2xl p-6 relative bg-[#2a2f31] flex flex-col gap-2">
-                {best.price !== best.full_price && (
-                  <span className="absolute -top-3 left-6 bg-red-500 text-xs px-2 py-1 rounded">
-                    {`-${Math.round(100 - (best.price / best.full_price) * 100)}%`}
-                  </span>
-                )}
-                <span className="absolute top-3 right-4 text-orange-400 text-xs">
-                  ХИТ!
-                </span>
-                <h2 className="text-lg">{best.period}</h2>
-                <div className="text-3xl font-bold text-orange-400">
-                  {best.price} ₽
-                </div>
-                <div className="text-sm line-through opacity-50">
-                  {best.full_price} ₽
-                </div>
-                <p className="text-sm opacity-80">{best.text}</p>
-              </div>
-              {/* Other tariffs */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                {otherTariffs.map((t) => (
-                  <div
-                    key={t.key}
-                    className="bg-[#2a2f31] rounded-2xl p-4 relative flex-1 flex flex-col gap-1"
-                  >
-                    {t.price !== t.full_price && (
-                      <span className="absolute -top-3 right-4 bg-red-500 text-xs px-2 py-1 rounded">
-                        {`-${Math.round(100 - (t.price / t.full_price) * 100)}%`}
-                      </span>
-                    )}
-                    <h3>{t.period}</h3>
-                    <div className="text-xl font-semibold">{t.price} ₽</div>
-                    <div className="text-xs line-through opacity-50">
-                      {t.full_price} ₽
-                    </div>
-                    <p className="text-xs opacity-70 mt-auto">{t.text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <TariffList
+              mainTariff={best}
+              otherTariffs={otherTariffs}
+              discountActive={true}
+            />
+
             <div className="text-xs opacity-70 flex items-start gap-2">
               <span className="text-yellow-400">!</span>
               <p>

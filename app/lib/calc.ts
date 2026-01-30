@@ -1,3 +1,3 @@
-export function calcDiscount(price: number, full: number) {
-  return Math.round(((full - price) / full) * 100);
+export function calcDiscount(discountPrice: number, fullPrice: number) {
+  return Math.round(((fullPrice - discountPrice) / fullPrice) * 100);
 }

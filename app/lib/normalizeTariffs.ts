@@ -52,7 +52,7 @@ export function normalizeTariffs(data: TariffApi[]): NormalizedTariffs {
   // Убираем best из других и сортируем
   const filtered = [];
   for (let i = 0; i < otherTariffs.length; i++) {
-    if (otherTariffs[i].id !== finalBest.id) {
+    if (otherTariffs[i].key !== finalBest.key) {
       filtered.push(otherTariffs[i]);
     }
   }
