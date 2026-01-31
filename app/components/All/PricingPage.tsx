@@ -16,7 +16,7 @@ export default function PricingPage({ tariffs }: PricingPageProps) {
         <h1 className="text-left text-[40px] font-bold mb-5 md:mb-25">
           Выбери подходящий для себя <span className="text-accent">тариф</span>
         </h1>
-        <div className="relative mx-auto flex flex-col lg:flex-row gap-10 w-full lg:w-[1216px] lg:h-[867px] px-4 ">
+        <div className="relative mx-auto flex flex-col lg:flex-row justify-between w-full lg:max-w-[1216px] lg:h-[867px] pr-4">
           <div className="w-full flex justify-center items-center lg:w-[382px]">
             <ModelImage />
           </div>

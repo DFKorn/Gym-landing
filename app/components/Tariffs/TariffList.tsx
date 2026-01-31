@@ -19,7 +19,7 @@ export function TariffList({
   );
 
   return (
-    <section className="mx-auto max-w-[1216px] px-4">
+    <section className="mx-auto max-w-[1216px] ">
       <div className="flex flex-col gap-6">
         {mainTariff && (
           <TariffCard
