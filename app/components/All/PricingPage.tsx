@@ -2,6 +2,7 @@ import Image from "next/image";
 import ModelImage from "../Offer/ModelImage";
 import { NormalizedTariffs } from "../../lib/normalizeTariffs";
 import { TariffList } from "../Tariffs/TariffList";
+import Checkbox from "../Purchase/Checkbox";
 
 type PricingPageProps = {
   tariffs: NormalizedTariffs;
@@ -27,17 +28,20 @@ export default function PricingPage({ tariffs }: PricingPageProps) {
               discountActive={true}
             />
 
-            <div className="text-xs opacity-70 flex items-start gap-2">
-              <span className="text-yellow-400">!</span>
+            <div className="text-xs leading-[1.4] md:text-base opacity-70 flex items-start gap-2 w-full rounded-[20px] bg-[#313637] p-[18px_20px] lg:w-[499px] lg:h-[78px] ">
+              <span className="text-accent leading-none text-xl font-bold">
+                !
+              </span>
               <p>
                 Следуя плану на 3 месяца и более, люди получают в 2 раза лучший
                 результат, чем за 1 месяц
               </p>
             </div>
-            <label className="flex items-center gap-2 text-xs opacity-70">
-              <input type="checkbox" className="accent-orange-400" />Я согласен
-              с офертой рекуррентных платежей и Политикой конфиденциальности
-            </label>
+            <Checkbox className="text-xs md:text-base">
+              Я согласен с{" "}
+              <span className="underline">офертой рекуррентных платежей</span> и{" "}
+              <span className="underline">Политикой конфиденциальности</span>
+            </Checkbox>
             <button className="w-full bg-orange-400 hover:bg-orange-500 transition text-black font-semibold py-3 rounded-xl">
               Купить
             </button>
