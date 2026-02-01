@@ -6,6 +6,7 @@ import { NormalizedTariffs } from "../../lib/normalizeTariffs";
 import { TariffList } from "../Tariffs/TariffList";
 import Checkbox from "../Purchase/Checkbox";
 import BuyButton from "../Purchase/BuyButton";
+import GuaranteeBox from "../Guarantee/GuaranteeBox";
 
 type PricingPageProps = {
   tariffs: NormalizedTariffs;
@@ -19,7 +20,7 @@ export default function PricingPage({ tariffs }: PricingPageProps) {
     <>
       <main className="min-h-screen max-w-[1216px] mx-auto text-white mt-8">
         {/* <div className="absolute top-[153] left-[357] w-[1216] h-[2px] bg-red-500 z-[30]"></div> */}
-        <h1 className="text-left text-[22px] sm:text-[24px] lg:text-[40px] font-bold mb-5 md:mb-25">
+        <h1 className="text-left md:text-center lg:text-left text-[22px] sm:text-[24px] lg:text-[40px] font-bold my-4 mb-5 lg:mb-25">
           Выбери подходящий для себя <span className="text-accent">тариф</span>
         </h1>
         <div className="relative mx-auto flex flex-col lg:flex-row justify-between w-full lg:max-w-[1216px] lg:h-[867px] px-4 lg:pr-4 lg:pl-0">
@@ -59,19 +60,17 @@ export default function PricingPage({ tariffs }: PricingPageProps) {
               isCheckboxChecked={isCheckboxChecked}
               onCheckboxError={setCheckboxError}
             />
-            <div className="border border-green-500 rounded-2xl p-5 text-sm">
-              <span className="inline-block mb-2 px-3 py-1 text-green-400 border border-green-500 rounded-full">
-                гарантия возврата 30 дней
-              </span>
-              <p className="opacity-80">
-                Мы уверены, что наш план сработает для тебя и ты увидишь видимые
-                результаты уже через 4 недели! Мы даже готовы полностью вернуть
-                твои деньги в течение 30 дней с момента покупки, если ты не
-                получишь видимых результатов.
-              </p>
-            </div>
+            <p className="text-[10px] sm:text-[14px] leading-[1.2] text-[#9B9B9B] mt-[10px]">
+              Нажимая кнопку «Купить», Пользователь соглашается на разовое
+              списание денежных средств для получения пожизненного доступа к
+              приложению. Пользователь соглашается, что данные
+              кредитной/дебетовой карты будут сохранены для осуществления
+              покупок дополнительных услуг сервиса в случае желания
+              пользователя.
+            </p>
           </div>
         </div>
+        <GuaranteeBox />
       </main>
     </>
   );
