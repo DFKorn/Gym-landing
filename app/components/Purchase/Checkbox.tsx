@@ -7,6 +7,7 @@ interface CheckboxProps {
   onChange?: (checked: boolean) => void;
   children: React.ReactNode;
   className?: string;
+  error?: boolean;
 }
 
 export default function Checkbox({
@@ -14,6 +15,7 @@ export default function Checkbox({
   onChange,
   children,
   className = "",
+  error = false,
 }: CheckboxProps) {
   const [internalChecked, setInternalChecked] = useState(externalChecked);
   const isControlled = onChange !== undefined;
@@ -29,7 +31,7 @@ export default function Checkbox({
 
   return (
     <label
-      className={`flex w-full items-start gap-3 text-sm cursor-pointer self-start ${className}`}
+      className={`flex w-full items-center gap-3 text-sm cursor-pointer self-start ${className} ${error ? "animate-shake" : ""}`}
     >
       <input
         type="checkbox"
@@ -38,8 +40,12 @@ export default function Checkbox({
         onChange={handleChange}
       />
       <span
-        className={`mt-0.5 h-6 w-6 shrink-0 rounded-md border-2 flex items-center justify-center transition-all duration-300 ${
-          checked ? "border-accent bg-transparent" : "border-accent "
+        className={`mt-0.5 h-7 w-7 lg:h-8 lg:w-8 shrink-0 rounded-md border-2 flex items-center justify-center transition-all duration-300 ${
+          error
+            ? "border-red-500 animate-pulse shadow-error"
+            : checked
+              ? "border-accent bg-transparent"
+              : "border-accent"
         }`}
       >
         {checked && (
@@ -54,7 +60,7 @@ export default function Checkbox({
           </svg>
         )}
       </span>
-      <span className="leading-tight text-left text-neutral-300">
+      <span className={`leading-tight text-left text-neutral-300`}>
         {children}
       </span>
     </label>

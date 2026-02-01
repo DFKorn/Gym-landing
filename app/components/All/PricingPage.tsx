@@ -1,8 +1,11 @@
+"use client";
 import Image from "next/image";
+import { useState } from "react";
 import ModelImage from "../Offer/ModelImage";
 import { NormalizedTariffs } from "../../lib/normalizeTariffs";
 import { TariffList } from "../Tariffs/TariffList";
 import Checkbox from "../Purchase/Checkbox";
+import BuyButton from "../Purchase/BuyButton";
 
 type PricingPageProps = {
   tariffs: NormalizedTariffs;
@@ -10,6 +13,8 @@ type PricingPageProps = {
 
 export default function PricingPage({ tariffs }: PricingPageProps) {
   const { best, otherTariffs } = tariffs;
+  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
+  const [checkboxError, setCheckboxError] = useState(false);
   return (
     <>
       <main className="min-h-screen max-w-[1216px] mx-auto text-white mt-8">
@@ -37,14 +42,23 @@ export default function PricingPage({ tariffs }: PricingPageProps) {
                 результат, чем за 1 месяц
               </p>
             </div>
-            <Checkbox className="text-xs md:text-base">
+            <Checkbox
+              checked={isCheckboxChecked}
+              onChange={(checked) => {
+                setIsCheckboxChecked(checked);
+                setCheckboxError(false);
+              }}
+              error={checkboxError}
+              className="text-xs md:text-base"
+            >
               Я согласен с{" "}
               <span className="underline">офертой рекуррентных платежей</span> и{" "}
               <span className="underline">Политикой конфиденциальности</span>
             </Checkbox>
-            <button className="w-full bg-orange-400 hover:bg-orange-500 transition text-black font-semibold py-3 rounded-xl">
-              Купить
-            </button>
+            <BuyButton
+              isCheckboxChecked={isCheckboxChecked}
+              onCheckboxError={setCheckboxError}
+            />
             <div className="border border-green-500 rounded-2xl p-5 text-sm">
               <span className="inline-block mb-2 px-3 py-1 text-green-400 border border-green-500 rounded-full">
                 гарантия возврата 30 дней

@@ -13,6 +13,27 @@
   --font-mono: var(--font-geist-mono);
   --font-mulish: var(--font-mulish);
   --color-accent: var(--color-accent);
+  --animate-shake: shake 0.4s ease-in-out;
+  --shadow-error: 0 0 0 4px rgba(239, 68, 68, 0.25);
+
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    20% {
+      transform: translateX(-4px);
+    }
+    40% {
+      transform: translateX(4px);
+    }
+    60% {
+      transform: translateX(-4px);
+    }
+    80% {
+      transform: translateX(4px);
+    }
+  }
 }
 
 @media (prefers-color-scheme: dark) {
