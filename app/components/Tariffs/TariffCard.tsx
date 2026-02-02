@@ -25,7 +25,7 @@ export function TariffCard({
     (isSelected ? "border-accent scale-[1.03] " : "border-white/10 ") +
     (isMain
       ? "lg:p-8 lg:h-[190px] md:p-[16px_20px] lg:p-[30px_50px_26px_19px] "
-      : "lg:h-[335px] ");
+      : "lg:h-[335px] lg:p-[70px_21px_26px_21px]");
 
   return (
     <button type="button" onClick={onSelect} className={buttonClass}>
@@ -41,7 +41,7 @@ export function TariffCard({
 
       {/* Main info*/}
       <div
-        className={`pt-4 lg:pt-0 flex md:flex-col items-center justify-between gap-6 ${isMain && "lg:ml-[100px] md:flex-row"} `}
+        className={`pt-4 lg:pt-0 flex md:flex-col items-center justify-between  gap-6 h-full ${isMain ? "lg:ml-[100px] md:flex-row md:justify-between" : "md:justify-start"} `}
       >
         {/* TITLE + Price*/}
         <div className="flex flex-col items-start lg:items-center gap-5">
@@ -67,7 +67,9 @@ export function TariffCard({
             )}
           </div>
         </div>
-        <div className="max-w-[260px] sm:max-w-[320px] w-full">
+        <div
+          className={`max-w-[260px] sm:max-w-[320px] w-full ${!isMain && "lg:mt-4"}`}
+        >
           <p className="text-[14px] text-center md:text-left md:text-[16px] font-normal text-white/90">
             {tariff.text}
           </p>
