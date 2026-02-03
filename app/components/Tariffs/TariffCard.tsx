@@ -7,6 +7,7 @@ import DiscountBadge from "./DiscountBadge";
 type Props = {
   tariff: Tariff;
   variant?: "main" | "default";
+  discountActive?: boolean;
   isSelected?: boolean;
   onSelect?: () => void;
 };
@@ -16,8 +17,10 @@ export function TariffCard({
   variant = "default",
   isSelected = false,
   onSelect,
+  discountActive = false,
 }: Props) {
   const isMain = variant === "main";
+
   const discount = calcDiscount(tariff.price, tariff.full_price || 0);
   const buttonClass =
     "relative text-left rounded-3xl bg-[#313637] cursor-pointer p-[20px] border transition-all duration-200 " +
@@ -53,15 +56,39 @@ export function TariffCard({
           <div className="flex flex-col items-end leading-none">
             <div
               className={
-                "text-[30px] sm:text-[30px] lg:text-[50px] font-semibold whitespace-nowrap transition-colors " +
-                (isSelected ? "text-[#FDB056]" : "text-white")
+                "text-[30px] sm:text-[30px] lg:text-[50px] font-semibold whitespace-nowrap transition-colors relative " +
+                (isSelected ? "text-accent" : "text-white")
               }
             >
-              {tariff.price} ₽
+              <div className="relative inline-block">
+                <div className="opacity-0 pointer-events-none whitespace-nowrap">
+                  {tariff.full_price} ₽
+                </div>
+                <div
+                  className={`absolute inset-0 transition-all duration-500 ${
+                    discountActive
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 -translate-y-2"
+                  }`}
+                >
+                  {tariff.price} ₽
+                </div>
+                <div
+                  className={`absolute inset-0 transition-all duration-500 ${
+                    discountActive
+                      ? "opacity-0 translate-y-2"
+                      : "opacity-100 translate-y-0"
+                  }`}
+                >
+                  {tariff.full_price ?? tariff.price} ₽
+                </div>
+              </div>
             </div>
 
             {tariff.full_price && (
-              <div className="font-normal text-[14px] sm:text-[16px] lg:text-[24px] text-white/40 line-through">
+              <div
+                className={`${discountActive ? "opacity-100" : "opacity-0"} font-normal text-[14px] sm:text-[16px] lg:text-[24px] text-white/40 line-through transition-opacity duration-300`}
+              >
                 {tariff.full_price} ₽
               </div>
             )}

@@ -1,6 +1,6 @@
 import { HeaderTimer } from "./HeaderTimer";
 
-export const Header = () => {
+export const Header = ({ onTimerEnd }: { onTimerEnd: () => void }) => {
   return (
     <header
       className="
@@ -19,7 +19,7 @@ export const Header = () => {
           Успейте открыть пробную неделю
         </p>
 
-        <HeaderTimer />
+        <HeaderTimer duration={5} onExpire={onTimerEnd} />
       </div>
     </header>
   );

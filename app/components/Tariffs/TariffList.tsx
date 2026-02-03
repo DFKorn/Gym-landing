@@ -25,6 +25,7 @@ export function TariffList({
           <TariffCard
             tariff={mainTariff}
             variant="main"
+            discountActive={discountActive}
             isSelected={selectedKey === mainTariff.key}
             onSelect={() => setSelectedKey(mainTariff.key)}
           />
@@ -35,6 +36,7 @@ export function TariffList({
             <TariffCard
               key={tariff.key}
               tariff={tariff}
+              discountActive={discountActive}
               isSelected={selectedKey === tariff.key}
               onSelect={() => setSelectedKey(tariff.key)}
             />

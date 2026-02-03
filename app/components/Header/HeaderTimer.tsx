@@ -1,29 +1,58 @@
 "use client";
-import { useEffect, useState } from "react";
+import { getExpireAt } from "@/app/lib/timer";
+import { useEffect, useRef, useState } from "react";
 
-export const HeaderTimer = () => {
-  const INITIAL_TIME = 2 * 60; // 2 минуты в секундах
-  const [timeLeft, setTimeLeft] = useState(INITIAL_TIME);
+export const HeaderTimer = ({
+  duration,
+  onExpire,
+}: {
+  duration: number;
+  onExpire: () => void;
+}) => {
+  const [remaining, setRemaining] = useState(() => {
+    if (typeof window === "undefined") return 0;
+
+    const expireAt = getExpireAt(duration);
+    return Math.max(0, Math.floor((expireAt - Date.now()) / 1000));
+  });
+  const intervalRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (timeLeft <= 0) return;
+    const expireAt = getExpireAt(duration);
 
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => prev - 1);
-    }, 1000);
+    const tick = () => {
+      const diff = Math.max(0, Math.floor((expireAt - Date.now()) / 1000));
 
-    return () => clearInterval(interval);
-  }, [timeLeft]);
+      setRemaining(diff);
 
-  const minutes = String(Math.floor(timeLeft / 60)).padStart(2, "0");
-  const seconds = String(timeLeft % 60).padStart(2, "0");
+      if (diff === 0) {
+        onExpire();
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+        }
+      }
+    };
 
-  const isDanger = timeLeft <= 30 && timeLeft > 0;
+    tick();
+    intervalRef.current = window.setInterval(tick, 1000);
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [duration, onExpire]);
+
+  if (remaining === null) return null;
+
+  const minutes = String(Math.floor(remaining / 60)).padStart(2, "0") ?? "00";
+  const seconds = String(remaining % 60).padStart(2, "0") ?? "00";
+
+  const isDanger = remaining <= 30 && remaining > 0;
 
   let textColor = "text-accent";
   if (isDanger) textColor = "text-red-300 animate-pulse";
-  if (timeLeft === 0) textColor = "text-white";
-
+  if (remaining === 0) textColor = "text-white";
   return (
     <div
       className={`text-4xl font-bold font-mulish flex flex-row items-center justify-center gap-2 ${textColor}`}
