@@ -19,7 +19,7 @@ export const Header = ({ onTimerEnd }: { onTimerEnd: () => void }) => {
           Успейте открыть пробную неделю
         </p>
 
-        <HeaderTimer duration={5} onExpire={onTimerEnd} />
+        <HeaderTimer duration={120} onExpire={onTimerEnd} />
       </div>
     </header>
   );
