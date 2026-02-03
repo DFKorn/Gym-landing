@@ -17,7 +17,7 @@ export default function PricingPage({ tariffs }: PricingPageProps) {
   const { best, otherTariffs } = tariffs;
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
   const [checkboxError, setCheckboxError] = useState(false);
-  const [discountActive, setDiscountActive] = useState(false);
+  const [discountActive, setDiscountActive] = useState(true);
 
   useEffect(() => {
     const expireAt = localStorage.getItem("discount_expire_at");
