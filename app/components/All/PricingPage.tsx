@@ -30,7 +30,6 @@ export default function PricingPage({ tariffs }: PricingPageProps) {
     <>
       <Header onTimerEnd={() => setDiscountActive(false)} />
       <main className="min-h-screen max-w-[1216px] mx-auto text-white mt-8">
-        {/* <div className="absolute top-[153] left-[357] w-[1216] h-[2px] bg-red-500 z-[30]"></div> */}
         <h1 className="text-left ml-4 md:text-center lg:text-left text-[22px] sm:text-[24px] lg:text-[40px] font-bold my-4 mb-5 lg:mb-25">
           Выбери подходящий для себя <span className="text-accent">тариф</span>
         </h1>

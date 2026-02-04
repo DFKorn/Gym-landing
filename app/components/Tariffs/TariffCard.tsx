@@ -33,7 +33,9 @@ export function TariffCard({
   return (
     <button type="button" onClick={onSelect} className={buttonClass}>
       {/* badge */}
-      {discount > 0 && <DiscountBadge percent={discount} active={true} />}
+      {discount > 0 && discountActive && (
+        <DiscountBadge percent={discount} active={true} />
+      )}
 
       {/* Best badge */}
       {isMain && (
