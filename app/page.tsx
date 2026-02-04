@@ -10,7 +10,6 @@ export default async function Page() {
   return (
     <>
       <PricingPage tariffs={tariffs} />
-      {/* <OfferSection tariffs={tariffs} /> */}
     </>
   );
 }
