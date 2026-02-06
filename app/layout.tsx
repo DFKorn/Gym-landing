@@ -29,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${montserrat.variable} ${mulish.variable} antialiased`}>
+        <header className=" py-2 w-full md:h-[92px] h-[88px]  bg-[#1E5B43]"></header>
         {children}
       </body>
     </html>

@@ -2,14 +2,15 @@ import { Suspense } from "react";
 import { getTariffs } from "./lib/api";
 import Skeleton from "./components/Tariffs/Skeleton";
 import { Header } from "./components/Header/Header";
-import PricingPage from "./components/All/PricingPage";
+import PricingPage from "./components/Prices/PricingPage";
+import { Main } from "next/document";
+import MainInfo from "./components/MainInfo/MainInfo";
 
-export default async function Page() {
-  const tariffs = await getTariffs();
-
+export default function Page() {
   return (
     <>
-      <PricingPage tariffs={tariffs} />
+      <MainInfo />
+      {/* <PricingPage tariffs={tariffs} /> */}
     </>
   );
 }
