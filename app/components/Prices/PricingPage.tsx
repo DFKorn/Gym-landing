@@ -1,31 +1,40 @@
 "use client";
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import ModelImage from "../Offer/ModelImage";
 import { NormalizedTariffs } from "../../lib/normalizeTariffs";
 import { TariffList } from "../Tariffs/TariffList";
 import Checkbox from "../Purchase/Checkbox";
 import BuyButton from "../Purchase/BuyButton";
-import GuaranteeBox from "../Guarantee/GuaranteeBox";
-import { Header } from "../Header/Header";
 
 type PricingPageProps = {
   tariffs: NormalizedTariffs;
+  expireAt: number;
 };
 
-export default function PricingPage({ tariffs }: PricingPageProps) {
+export default function PricingPage({ tariffs, expireAt }: PricingPageProps) {
   const { best, otherTariffs } = tariffs;
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
   const [checkboxError, setCheckboxError] = useState(false);
-  const [discountActive, setDiscountActive] = useState(true);
+  const [discountActive, setDiscountActive] = useState(() => {
+    return expireAt > Date.now();
+  });
 
   useEffect(() => {
-    const expireAt = localStorage.getItem("discount_expire_at");
+    if (!expireAt) return;
 
-    if (expireAt && Date.now() >= Number(expireAt)) {
-      setDiscountActive(false);
+    const update = () => {
+      setDiscountActive(expireAt > Date.now());
+    };
+
+    update();
+
+    const remaining = expireAt - Date.now();
+
+    if (remaining > 0) {
+      const t = setTimeout(update, remaining);
+      return () => clearTimeout(t);
     }
-  }, []);
+  }, [expireAt]);
+
   return (
     <>
       <TariffList

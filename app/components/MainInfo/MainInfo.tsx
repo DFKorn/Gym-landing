@@ -9,8 +9,6 @@ export default async function MainInfo() {
 
   return (
     <>
-      {/* <Header onTimerEnd={() => setDiscountActive(false)} /> */}
-      <DiscountClient />
       <main className="min-h-screen max-w-[1216px] mx-auto text-white mt-8">
         <h1 className="text-left ml-4 md:text-center lg:text-left text-[22px] sm:text-[24px] lg:text-[40px] font-bold my-4 mb-5 lg:mb-25">
           Выбери подходящий для себя <span className="text-accent">тариф</span>
@@ -20,7 +18,7 @@ export default async function MainInfo() {
             <ModelImage />
           </div>
           <div className="flex flex-col gap-4 w-full md:w-[748px] m-auto lg:m-0 items-center lg:items-start ">
-            <PricingPage tariffs={tariffs} />
+            <DiscountClient tariffs={tariffs} />
             <p className="text-[10px] sm:text-[14px] leading-[1.2] text-[#9B9B9B] mt-[10px]">
               Нажимая кнопку «Купить», Пользователь соглашается на разовое
               списание денежных средств для получения пожизненного доступа к

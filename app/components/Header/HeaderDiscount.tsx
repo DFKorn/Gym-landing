@@ -3,7 +3,7 @@ import { HeaderTimer } from "./HeaderTimer";
 
 export const HeaderDiscount = ({ expireAt }: { expireAt: number }) => {
   return (
-    <div className="py-2 text-center bg-[#1E5B43] absolute left-0 right-0 top-0 z-10">
+    <div className="py-2 text-center bg-[#1E5B43] fixed left-0 right-0 top-0 z-50">
       <div
         className="
           max-w-7xl mx-auto
