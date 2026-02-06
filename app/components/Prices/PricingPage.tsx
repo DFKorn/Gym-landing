@@ -67,6 +67,13 @@ export default function PricingPage({ tariffs, expireAt }: PricingPageProps) {
         isCheckboxChecked={isCheckboxChecked}
         onCheckboxError={setCheckboxError}
       />
+      <p className="text-[10px] sm:text-[14px] leading-[1.2] text-[#9B9B9B] mt-[10px]">
+        Нажимая кнопку «Купить», Пользователь соглашается на разовое списание
+        денежных средств для получения пожизненного доступа к приложению.
+        Пользователь соглашается, что данные кредитной/дебетовой карты будут
+        сохранены для осуществления покупок дополнительных услуг сервиса в
+        случае желания пользователя.
+      </p>
     </>
   );
 }

@@ -19,17 +19,8 @@ export default async function MainInfo() {
           </div>
           <div className="flex flex-col gap-4 w-full md:w-[748px] m-auto lg:m-0 items-center lg:items-start ">
             <DiscountClient tariffs={tariffs} />
-            <p className="text-[10px] sm:text-[14px] leading-[1.2] text-[#9B9B9B] mt-[10px]">
-              Нажимая кнопку «Купить», Пользователь соглашается на разовое
-              списание денежных средств для получения пожизненного доступа к
-              приложению. Пользователь соглашается, что данные
-              кредитной/дебетовой карты будут сохранены для осуществления
-              покупок дополнительных услуг сервиса в случае желания
-              пользователя.
-            </p>
           </div>
         </div>
-
         <GuaranteeBox />
       </main>
     </>
