@@ -1,6 +1,4 @@
 import { Tariff } from "../../lib/types";
-// import Price from "./Price";
-// import DiscountBadge from "./DiscountBadge";
 import { calcDiscount } from "../../lib/calc";
 import DiscountBadge from "./DiscountBadge";
 import Price from "./Price";

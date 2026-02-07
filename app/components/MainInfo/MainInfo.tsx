@@ -1,5 +1,5 @@
 import GuaranteeBox from "../Guarantee/GuaranteeBox";
-import ModelImage from "../Offer/ModelImage";
+import ModelImage from "../ModelImage/ModelImage";
 import { getTariffs } from "../../lib/api";
 import PricingPage from "../Prices/PricingPage";
 import DiscountClient from "../Discount/DiscountClient";
