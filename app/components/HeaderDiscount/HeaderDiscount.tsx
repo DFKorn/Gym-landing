@@ -1,5 +1,4 @@
 import { HeaderDiscountTimer } from "./HeaderDiscountTimer";
-import { HeaderTimer } from "./HeaderTimer";
 
 export const HeaderDiscount = ({ expireAt }: { expireAt: number }) => {
   return (
