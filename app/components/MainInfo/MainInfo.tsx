@@ -14,7 +14,7 @@ export default async function MainInfo() {
           Выбери подходящий для себя <span className="text-accent">тариф</span>
         </h1>
         <div className="relative mx-auto flex flex-col lg:flex-row justify-between w-full lg:max-w-[1216px] lg:h-[867px] px-4 lg:pr-4 lg:pl-0">
-          <div className="w-full flex justify-center items-center lg:w-[382px]">
+          <div className="flex justify-center items-center flex-shrink-0">
             <ModelImage />
           </div>
           <div className="flex flex-col gap-4 w-full md:w-[748px] m-auto lg:m-0 items-center lg:items-start ">
