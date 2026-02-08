@@ -19,20 +19,18 @@ export default function PricingPage({ tariffs, expireAt }: PricingPageProps) {
   });
 
   useEffect(() => {
-    if (!expireAt) return;
-
-    const update = () => {
-      setDiscountActive(expireAt > Date.now());
-    };
-
-    update();
-
     const remaining = expireAt - Date.now();
 
-    if (remaining > 0) {
-      const t = setTimeout(update, remaining);
-      return () => clearTimeout(t);
+    if (remaining <= 0) {
+      setDiscountActive(false);
+      return;
     }
+
+    const t = setTimeout(() => {
+      setDiscountActive(false);
+    }, remaining);
+
+    return () => clearTimeout(t);
   }, [expireAt]);
 
   return (
