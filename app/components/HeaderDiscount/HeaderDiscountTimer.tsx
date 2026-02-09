@@ -5,13 +5,14 @@ import { useEffect, useRef } from "react";
 export function HeaderDiscountTimer({ expireAt }: { expireAt: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const lastSec = useRef<number | null>(null);
-  const raf = useRef<number>(null);
   const lastClass = useRef<string | null>(null);
+  const timeout = useRef<number | null>(null);
 
   useEffect(() => {
     function tick() {
       const el = ref.current;
       if (!el) return;
+
       const remaining = Math.max(0, expireAt - Date.now());
       const sec = Math.floor(remaining / 1000);
 
@@ -29,7 +30,8 @@ export function HeaderDiscountTimer({ expireAt }: { expireAt: number }) {
         el.className = nextClass;
       }
 
-      if (sec !== lastSec.current && ref.current) {
+      // обновляем текст только при смене секунды
+      if (sec !== lastSec.current) {
         lastSec.current = sec;
 
         const m = String(Math.floor(sec / 60)).padStart(2, "0");
@@ -38,13 +40,27 @@ export function HeaderDiscountTimer({ expireAt }: { expireAt: number }) {
         el.textContent = `${m}:${s}`;
       }
 
+      // планируем следующий тик
       if (remaining > 0) {
-        raf.current = requestAnimationFrame(tick);
+        scheduleNext(remaining);
       }
     }
 
+    function scheduleNext(remaining: number) {
+      const delay = remaining % 1000 || 1000;
+
+      timeout.current = window.setTimeout(() => {
+        tick();
+      }, delay);
+    }
+
     tick();
-    return () => cancelAnimationFrame(raf.current!);
+
+    return () => {
+      if (timeout.current !== null) {
+        clearTimeout(timeout.current);
+      }
+    };
   }, [expireAt]);
 
   return <span ref={ref}>00:00</span>;
