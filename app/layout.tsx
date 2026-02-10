@@ -27,8 +27,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${montserrat.variable} ${mulish.variable} antialiased`}>
+    <html
+      lang="en"
+      className={`${montserrat.variable} ${mulish.variable} antialiased`}
+    >
+      <body>
         <header className="py-2 w-full md:h-[92px] h-[88px]  bg-[#1E5B43]"></header>
         {children}
       </body>

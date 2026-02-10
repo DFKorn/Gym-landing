@@ -27,12 +27,12 @@ export const HeaderDiscount = ({ expireAt }: { expireAt: number }) => {
           text-center
         "
       >
-        <p className="text-white font-semibold text-lg md:text-2xl">
+        <p className="text-white font-semibold text-base md:text-2xl">
           Успейте открыть пробную неделю
         </p>
 
         <div
-          className={`text-4xl font-bold font-mulish flex flex-row items-center justify-center gap-2`}
+          className={`text-[28px] md:text-4xl font-bold font-mulish flex flex-row items-center justify-center gap-2`}
         >
           <span className="text-[14px]">✦</span>
           <div className="inline-block text-center">
